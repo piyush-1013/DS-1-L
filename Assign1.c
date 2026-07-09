@@ -2,9 +2,9 @@
 void getmatrix(int r, int c, int m[r][c],const char *name)
 {
    printf("Enter elements of %s (%dx%d): \n", name, r, c);
-   for (int i = 0; i < r; i++)
+   for (int i = 0; i < r; ++i)
    { 
-     for (int j = 0; j < c; j++)
+     for (int j = 0; j < c; ++j)
        {
          scanf("%d", &m[i][j]);
        }
@@ -14,9 +14,13 @@ void getmatrix(int r, int c, int m[r][c],const char *name)
 void display(int r, int c, int m[r][c],const char *label)
 {
     printf("%s (%dx%d):\n", label, r, c);
-    for (int i = 0; i < r; i++) {
-        for (int j = 0; j < c; j++)
+    for (int i = 0; i < r; ++i) 
+    {
+        for (int j = 0; j < c; ++j)
+        {
             printf("%5d ", m[i][j]);
+        }
+        printf("\n"); 
     }
 }
 
@@ -26,9 +30,9 @@ int add(int r1,int c1,int A[r1][c1],int r2,int c2,int B[r2][c2],int C[r1][c1])
   {
     return -1; 
   }
-  for (int i = 0; i < r1; i++)
+  for (int i = 0; i < r1; ++i)
     {
-        for (int j = 0; j < c1; j++)
+        for (int j = 0; j < c1; ++j)
           {
             C[i][j] = A[i][j] + B[i][j];
           }
@@ -42,9 +46,9 @@ int subtract(int r1,int c1,int A[r1][c1],int r2,int c2,int B[r2][c2],int C[r1][c
     {
       return -1;
     }
-    for (int i = 0; i < r1; i++)
+    for (int i = 0; i < r1; ++i)
       {
-        for (int j = 0; j < c1; j++)
+        for (int j = 0; j < c1; ++j)
           {
             C[i][j] = A[i][j] - B[i][j];
           }
@@ -70,6 +74,17 @@ int multiply(int r1,int c1,int A[r1][c1],int r2,int c2,int B[r2][c2],int C[r1][c
         }
       }
     return 0;
+}
+
+void transpose(int r, int c, int A[r][c], int T[c][r])
+{
+    for (int i = 0; i < r; ++i)
+    {
+        for (int j = 0; j < c; ++j)
+        {
+            T[j][i] = A[i][j];
+        }
+    }
 }
 
 int main()
@@ -120,6 +135,10 @@ int main()
   {
         printf("Cannot multiply: inner dimensions differ.\n");
   }
+
+   int T[c1][r1];
+   transpose(r1, c1, A, T);
+   display(c1, r1, T, "Transpose of A");
        
   return 0;
 }
