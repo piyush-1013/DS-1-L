@@ -13,7 +13,7 @@ void getmat(int r, int c, int a[10][10])
 }
 int  main()
 {
-	int r,c , a[10][10],b[10][3],k,i,j;
+	int r,c , a[10][10],b[100][3],k,i,j;
 	printf("Enter number of rows of matrix: ");
 	scanf("%d",&r);
 	printf("Enter number of columns of matrix: ");
@@ -36,10 +36,12 @@ int  main()
 		}
 	}
 	b[0][2]=k-1;
-	printf("Size of compact matrix is %d x %d \n",r,c);
+	printf("Size of compact matrix is %d x 3 \n",b[0][2] + 1);
 	printf(" Row   column   value   \n");
 	for(i=1;i<=b[0][2];i++)
 	{
-			printf("\n %d\t%d\t%d",b[i][0],b[i][1],b[i][2]);
+			printf("\n %d \t %d \t %d",b[i][0],b[i][1],b[i][2]);
 	}
+	
+	return 0;
 }
