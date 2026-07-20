@@ -32,7 +32,7 @@ void comp(int r,int c,int a[10][10],int b[100][3])
 	}
 	b[0][2]=k-1;
 	t=b[0][2];
-	printf("compact matrix is: ");
+	printf("compact matrix is: \n");
 	printf(" Row   column   value   \n");
 	for(i=0;i<=b[0][2];i++)
 	{
@@ -71,11 +71,21 @@ void stp(int b[100][3],int t[100][3],int r,int c)
 }
 void ftp()
 {
-    
+    int i,j;
+    ft[0][0]=b[0][1];
+    ft[0][1]=b[0][0];
+    ft[0][2]=b[0][2];
+    if(b[0][2]<=0)
+    {
+        for(i=0;i<b[0][2];i++)
+        {
+            s[i]=0;
+        }
+    }
 }
 int  main()
 {
-	int r,c , a[10][10],b[100][3],k,i,j,t[100][3];
+	int r,c,a[10][10],b[100][3],k,i,j,t[100][3],ft[100][3];
 	printf("Enter number of rows of matrix: ");
 	scanf("%d",&r);
 	printf("Enter number of columns of matrix: ");
