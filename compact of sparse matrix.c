@@ -11,15 +11,10 @@ void getmat(int r, int c, int a[10][10])
 		}
 	}
 }
-int  main()
+void comp(int r,int c,int a[10][10],int b[100][3])
 {
-	int r,c , a[10][10],b[100][3],k,i,j;
-	printf("Enter number of rows of matrix: ");
-	scanf("%d",&r);
-	printf("Enter number of columns of matrix: ");
-	scanf("%d",&c);
-	getmat(r,c,a);
-	b[0][0]=r;
+    int i,j,k;
+    b[0][0]=r;
 	b[0][1]=c;
 	k=1;
 	for(i=0;i<r;i++)
@@ -43,5 +38,19 @@ int  main()
 			printf("\n %d \t %d \t %d",b[i][0],b[i][1],b[i][2]);
 	}
 	
+}
+void stp()
+{
+    
+}
+int  main()
+{
+	int r,c , a[10][10],b[100][3],k,i,j;
+	printf("Enter number of rows of matrix: ");
+	scanf("%d",&r);
+	printf("Enter number of columns of matrix: ");
+	scanf("%d",&c);
+	getmat(r,c,a);
+	comp(r,c,a,b);
 	return 0;
 }
