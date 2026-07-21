@@ -40,12 +40,13 @@ void comp(int r,int c,int a[10][10],int b[100][3])
 	}
 	
 }
-void stp(int b[100][3],int t[100][3],int r,int c)
+void smtp(int b[100][3],int stp[100][3],int r,int c)
 {
-    int q,i,j;
-    t[0][0]=b[0][1];
-    t[0][1]=b[0][0];
-    t[0][2]=b[0][2];
+    int q,i,j,t;
+    t=b[0][2];
+    stp[0][0]=b[0][1];
+    stp[0][1]=b[0][0];
+    stp[0][2]=b[0][2];
     if(b[0][2]>=0)
     {
         q=1;
@@ -55,43 +56,66 @@ void stp(int b[100][3],int t[100][3],int r,int c)
             {
                 if(b[p][1]==j)
                 {
-                    t[q][0]=b[p][1];
-                    t[q][1]=b[p][0];
-                    t[q][2]=b[p][2];
+                    stp[q][0]=b[p][1];
+                    stp[q][1]=b[p][0];
+                    stp[q][2]=b[p][2];
                     q=q+1;
                 }
             }
         }
     }
-    printf("\nTranspose of matrix is: \n");
-    for(i=0;i<=t[0][2];i++)
+    printf("\nTranspose of matrix by simple transpose method: \n");
+    for(i=0;i<=b[0][2];i++)
 	{
-			printf("\n %d \t %d \t %d",t[i][0],t[i][1],t[i][2]);
+			printf("\n %d \t %d \t %d",stp[i][0],stp[i][1],stp[i][2]);
 	}
 }
-void ftp()
+void fstp(int b[100][3],int s[100],int t[100],int ftp[100][3],int c)
 {
     int i,j;
-    ft[0][0]=b[0][1];
-    ft[0][1]=b[0][0];
-    ft[0][2]=b[0][2];
-    if(b[0][2]<=0)
+    ftp[0][0]=b[0][1];
+    ftp[0][1]=b[0][0];
+    ftp[0][2]=b[0][2];
+    if(b[0][2]>=0)
     {
-        for(i=0;i<b[0][2];i++)
+        for(i=0;i<c;i++)
         {
             s[i]=0;
+        }   
+        for(i=1;i<=b[0][2];i++)
+        {
+            s[b[i][1]]=s[b[i][1]]+1;
+        }
+        t[0]=1;
+        for(i=1;i<c;i++)
+        {
+            t[i]=t[i-1]+s[i-1];
+        }
+        for(i=1;i<=b[0][2];i++)
+        {
+            j=b[i][1];
+            ftp[t[j]][0]=b[i][1];
+            ftp[t[j]][1]=b[i][0];
+            ftp[t[j]][2]=b[i][2];
+            t[j]=t[j]+1;
         }
     }
+    printf("\nTranspose of matrix by fast transpose method: \n");
+    for(i=0;i<=b[0][2];i++)
+	{
+			printf("\n %d \t %d \t %d",ftp[i][0],ftp[i][1],ftp[i][2]);
+	}
 }
 int  main()
 {
-	int r,c,a[10][10],b[100][3],k,i,j,t[100][3],ft[100][3];
+	int r,c,a[10][10],b[100][3],k,i,j,stp[100][3],ft[100][3],s[100],t[100],ftp[100][3];
 	printf("Enter number of rows of matrix: ");
 	scanf("%d",&r);
 	printf("Enter number of columns of matrix: ");
 	scanf("%d",&c);
 	getmat(r,c,a);
 	comp(r,c,a,b);
-	stp(b,t,r,c);
+	smtp(b,stp,r,c);
+	fstp(b,s,t,ftp,c);
 	return 0;
 }
